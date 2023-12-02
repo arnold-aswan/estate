@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer utilities {
+  .nav-li {
+    @apply hidden sm:inline text-slate-700 hover:underline;
+  }
+}
