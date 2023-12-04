@@ -3,9 +3,10 @@ import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
   signInStart,
-  sigInSuccess,
+  signInSuccess,
   signInFailure,
 } from "../redux/user/userSlice";
+import OAuth from "../components/OAuth";
 
 const SignIn = () => {
   const [formData, setFormData] = useState({});
@@ -46,7 +47,7 @@ const SignIn = () => {
       }
       // setLoading(false);
       // setError(null);
-      dispatch(sigInSuccess(data));
+      dispatch(signInSuccess(data));
       navigate("/");
     } catch (error) {
       // setLoading(false);
@@ -78,6 +79,7 @@ const SignIn = () => {
           className="bg-slate-700 text-white p-3 rounded-lg uppercase hover:opacity-90 disabled:opacity-80">
           {loading ? "Signing In..." : "Sign In"}
         </button>
+        <OAuth />
       </form>
       <div className="flex gap-2 mt-5 ">
         <p>Dont have an account?</p>
