@@ -17,7 +17,7 @@ export const signUp = async (req, res, next) => {
 };
 
 export const signIn = async (req, res, next) => {
-  const { username, email, password } = req.body;
+  const { email, password } = req.body;
 
   try {
     const validUser = await User.findOne({ email });
