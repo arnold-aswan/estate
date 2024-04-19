@@ -23,14 +23,14 @@ const Header = () => {
           <FaSearch className="text-slate-500" />
         </form>
 
-        <ul className="flex gap-4">
+        <ul className="flex items-center gap-4">
           <Link to="/" className="nav-li">
             Home
-            {/* <li ></li> */}
+           
           </Link>
           <Link to="/about" className="nav-li">
             About
-            {/* <li></li> */}
+        
           </Link>
           <Link to="/profile">
             {currentUser ? (

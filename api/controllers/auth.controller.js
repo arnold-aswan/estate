@@ -26,8 +26,8 @@ export const signIn = async (req, res, next) => {
     if (!validPassword) return next(errorHandler(401, "Wrong password"));
     const token = jwt.sign({ id: validUser._id }, process.env.JWT_SECRET_KEY);
     const { password: hashedPass, ...restInfo } = validUser._doc;
-    res
-      .cookie("access_token", token, { httpOnly: true })
+    res // save token as cookie
+      .cookie("access_token", token, { httpOnly: true }) // httpOnly: true => no other third party app can have access to cookie
       .status(200)
       .json(restInfo);
   } catch (error) {

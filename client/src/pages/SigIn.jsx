@@ -10,8 +10,6 @@ import OAuth from "../components/OAuth";
 
 const SignIn = () => {
   const [formData, setFormData] = useState({});
-  // const [error, setError] = useState(null);
-  // const [loading, setLoading] = useState(false);
   const { loading, error } = useSelector((state) => state.user);
 
   const navigate = useNavigate();
@@ -26,8 +24,7 @@ const SignIn = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // setLoading(true);
-    dispatch(signInStart);
+    dispatch(signInStart());
     try {
       const response = await fetch("/api/auth/signin", {
         method: "POST",
@@ -37,21 +34,13 @@ const SignIn = () => {
         body: JSON.stringify(formData),
       });
       const data = await response.json();
-
       if (data.success === false) {
-        // setError(data.msg);
-        // setLoading(false);
-        // console.log(data);
         dispatch(signInFailure(data.msg));
         return;
       }
-      // setLoading(false);
-      // setError(null);
       dispatch(signInSuccess(data));
       navigate("/");
     } catch (error) {
-      // setLoading(false);
-      // setError(error.msg);
       dispatch(signInFailure(error.msg));
     }
   };
