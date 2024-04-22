@@ -28,7 +28,8 @@ const Profile = () => {
   const [filePercent, setFilePercent] = useState(0);
   const [fileUploadError, setFileUploadError] = useState(false);
   const [formData, setFormData] = useState({});
-
+  const [showListingsError, setShowListingsError] = useState(false);
+  const [userlistings, setUserlistings] = useState([]);
   const dispatch = useDispatch();
 
   // console.log(filePercent);
@@ -122,6 +123,22 @@ const Profile = () => {
       dispatch(logOutUserFailed(error.message));
     }
   };
+
+  const handleShowListings = async () => {
+    try {
+      setShowListingsError(false);
+      const res = await axios.get(`/api/user/listings/${currentUser._id}`);
+      const data = res.data;
+
+      if (data.success === false) {
+        setShowListingsError(true);
+        return;
+      }
+      setUserlistings(data);
+    } catch (error) {
+      setShowListingsError(true);
+    }
+  };
   return (
     <div className="p-3 max-w-lg mx-auto">
       <h1 className="text-3xl font-semibold text-center my-7">Profile</h1>
@@ -202,6 +219,52 @@ const Profile = () => {
         </span>
       </div>
       <p className="text-red-700 mt-5">{error ? error : null}</p>
+      <button onClick={handleShowListings} className="text-green-700 w-full ">
+        My Listings
+      </button>
+
+      {showListingsError && (
+        <p className="text-red-700 mt-5">
+          {showListingsError ? "Error showing listing" : null}
+        </p>
+      )}
+
+      {userlistings && userlistings.length > 0 && (
+        <div className="flex flex-col gap-3 ">
+          <h1 className="text-center my-7 text-2xl font-semibold">
+            Your Listings
+          </h1>
+
+          {userlistings.map((listing) => (
+            <div key={listing._id} className="border rounded-lg">
+              <Link
+                to={`/listing/${listing._id}`}
+                className="flex items-center justify-between gap-3 p-2">
+                <img
+                  src={listing.imageUrls[0]}
+                  alt="listing"
+                  className="h-20 w-auto object-contain rounded-lg"
+                />
+
+                <Link
+                  className="text-slate-700 font-semibold hover:underline truncate flex-1"
+                  to={`/listing/${listing._id}`}>
+                  <p>{listing.name}</p>
+                </Link>
+
+                <div className="flex flex-col gap-2">
+                  <button className="border border-blue-600 text-blue-600  hover:bg-blue-600 hover:text-white rounded px-2">
+                    Edit
+                  </button>
+                  <button className="border border-red-600 text-red-600  hover:bg-red-600 hover:text-white rounded px-2">
+                    Delete
+                  </button>
+                </div>
+              </Link>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 };
