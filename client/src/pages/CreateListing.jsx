@@ -121,7 +121,7 @@ const CreateListing = () => {
     e.preventDefault();
     try {
       if (formData.imageUrls.length < 1)
-        return setError("You must upload atleast 1 image");
+        return setError("You must upload at least 1 image");
       if (formData.regularPrice < formData.discountPrice)
         return setError("Regular price must be higher than discount price");
       setLoading(true);
@@ -350,6 +350,7 @@ const CreateListing = () => {
               </div>
             ))}
           <button
+            type="submit"
             disabled={loading || uploading}
             className="p-3 bg-slate-700 text-white rounded-lg uppercase hover:opacity-95 disabled:opacity-80 font-medium ">
             {loading ? "Creating" : "Create Listing"}
