@@ -272,11 +272,13 @@ const Profile = () => {
               </Link>
 
               <div className="flex flex-col gap-2">
-                <button
-                  type="button"
-                  className="border border-blue-600 text-blue-600  hover:bg-blue-600 hover:text-white rounded px-2">
-                  Edit
-                </button>
+                <Link to={`/update-listing/${listing._id}`}>
+                  <button
+                    type="button"
+                    className="border border-blue-600 text-blue-600  hover:bg-blue-600 hover:text-white rounded px-2">
+                    Edit
+                  </button>
+                </Link>
                 <button
                   type="button"
                   onClick={() => handleDeleteListing(listing._id)}
