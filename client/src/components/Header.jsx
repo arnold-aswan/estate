@@ -1,7 +1,7 @@
-import { FaSearch } from "react-icons/fa";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { useState } from "react";
+import { FaSearch } from "react-icons/fa";
 
 const Header = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -16,7 +16,6 @@ const Header = () => {
     navigate(`/search?${searchQuery}`);
   };
 
-  
   return (
     <header className="bg-slate-200 shadow-md">
       <div className="flex justify-between items-center max-w-6xl mx-auto p-3">
