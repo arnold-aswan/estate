@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { FaSearch } from "react-icons/fa";
+import logo from "../assets/swanEstate.jpg";
 
 const Header = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -19,7 +20,13 @@ const Header = () => {
   return (
     <header className="bg-slate-200 shadow-md">
       <div className="flex justify-between items-center max-w-6xl mx-auto p-3">
-        <Link to="/">
+        <Link to="/" className="flex items-center gap-2">
+          <img
+            src={logo}
+            alt="logo"
+            loading="lazy"
+            className="w-[3rem] h-auto"
+          />
           <h1 className="font-bold text-sm sm:text-xl flex flex-wrap">
             <span className="text-slate-500">Swan</span>
             <span className="text-slate-700">Estates</span>
