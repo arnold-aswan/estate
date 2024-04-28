@@ -28,10 +28,21 @@ const ListingCard = ({ listing }) => {
             {listing.description}
           </p>
           <p className="text-slate-500 mt-2 font-semibold ">
-            $
             {listing.offer
+              ? (listing.regularPrice - listing.discountPrice).toLocaleString(
+                  "en-US",
+                  {
+                    style: "currency",
+                    currency: "USD",
+                  }
+                )
+              : listing.regularPrice.toLocaleString("en-us", {
+                  style: "currency",
+                  currency: "USD",
+                })}
+            {/* {listing.offer
               ? listing.discountPrice.toLocaleString("en-us")
-              : listing.regularPrice.toLocaleString("en-us")}
+              : listing.regularPrice.toLocaleString("en-us")} */}
             {listing.type === "rent" && " / month"}
           </p>
           <div className="text-slate-700 flex items-center gap-4">

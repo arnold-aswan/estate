@@ -286,7 +286,7 @@ const UpdateListing = () => {
                 id="regularPrice"
                 required
                 min={50}
-                max={10000}
+                max={100000000}
                 className="p-3 border border-gray-300 rounded-lg"
                 onChange={handleChange}
                 value={formData.regularPrice}
@@ -305,7 +305,7 @@ const UpdateListing = () => {
                 <input
                   type="number"
                   min={0}
-                  max={50000}
+                  max={1000000}
                   id="discountPrice"
                   required
                   className="p-3 border border-gray-300 rounded-lg"
@@ -356,6 +356,7 @@ const UpdateListing = () => {
                 key={index}
                 className="flex justify-between items-center p-3 border ">
                 <img
+                  loading="lazy"
                   src={imageUrl}
                   alt="listing image"
                   className="w-20 h-20 object-cover rounded-lg"

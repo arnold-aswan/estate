@@ -171,6 +171,7 @@ const Profile = () => {
         />
 
         <img
+          loading="lazy"
           onClick={() => fileRef.current.click()}
           src={formData.avatar || currentUser.avatar}
           alt="avatar"
@@ -259,6 +260,7 @@ const Profile = () => {
               className="border rounded-lg flex items-center justify-between gap-3 p-2">
               <Link to={`/listing/${listing._id}`} className="">
                 <img
+                  loading="lazy"
                   src={listing.imageUrls[0]}
                   alt="listing"
                   className="h-20 w-auto object-contain rounded-lg"
